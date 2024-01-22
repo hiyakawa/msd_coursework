@@ -1,0 +1,18 @@
+#Targets:
+#clean deletes program, and all .o and .out files
+
+all: lab1
+lab1: Caps.o Clothing.o main.o Pants.o
+	c++ Caps.o Clothing.o main.o Pants.o -o lab1
+Caps.o: Caps.cpp Caps.h
+	c++ -c Caps.cpp
+Clothing.o: Clothing.cpp Clothing.h
+	c++ -c Clothing.cpp
+main.o: main.cpp
+	c++ -c main.cpp
+Pants.o: Pants.cpp Pants.h
+	c++ -c Pants.cpp
+runlab1: lab1
+	./lab1
+clean:
+	rm -f *.o *.out lab1

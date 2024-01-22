@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Adventure</title>
+    <link rel="stylesheet" href="adventure.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <header id="header" class="title">
+        <h1 class="title-text">Adventure 2022</h1>
+        <h2 class="player-name-text" id="playerNameVal" style="display: none">BENTEST</h2>
+      </header>
+
+      <!-- Login Screen -->
+      <div id="loginDiv">
+        <div class="loginDiv">
+          <div class="login">
+            <textarea class="player-name-text" id="playerNameText" placeholder="Enter your name"></textarea>
+            <div class="serverNameDiv" id="serverNameDiv">
+              <text style="color: dimgray" id="serverTextDropdown">server</text>
+              <textarea class="server-name-text" id="serverNameText" placeholder="ws://localhost:12345" hidden="yes">ws://localhost:12345</textarea>
+            </div>
+            <button id="loginButton">Login</button>
+          </div>
+        </div>
+      </div>
+
+              <!-- Main Game Screen -->
+      <div id="gameDiv">
+        <main class="main" id="main">
+          <div class="grid-container">
+            <div class="grid-item room" id="room">
+              <h2 class="room-name" id="room-name">Current Room</h2>
+              <p class="description" id="description"></p>
+            </div>
+            <div class="grid-item exits" id="exits">
+              <h3 class="section-title" id="exits__title">Exits:</h3>
+              <ol class="exits__content" id="exits__content">
+                <!-- <li class="ol-item">Cell</li>
+                <li class="ol-item">Outside</li>
+                <li class="ol-item">Hall</li>
+                <li class="ol-item">Cloak Room</li>
+                <li class="ol-item">Sitting Room</li>
+                <li class="ol-item">Cell</li>
+                <li class="ol-item">Outside</li>
+                <li class="ol-item">Hall</li>
+                <li class="ol-item">Cloak Room</li>
+                <li class="ol-item">Sitting Room</li> -->
+              </ol>
+            </div>
+            <div class="grid-item room-items" id="room-items">
+              <h3 class="section-title" id="room-items__title">Items in Room:</h3>
+              <ul class="room-items__content" id="room-items__content">
+                <!-- <li class="ul-item">a rusty Key</li>
+                <li class="ul-item">a shiny Key</li>
+                <li class="ul-item">an oversized Acme magnet</li>
+                <li class="ul-item">a Tuba</li>
+                <li class="ul-item">a U2 album on an iPhone</li>
+                <li class="ul-item">a rusty Key</li>
+                <li class="ul-item">a shiny Key</li>
+                <li class="ul-item">an oversized Acme magnet</li>
+                <li class="ul-item">a Tuba</li>
+                <li class="ul-item">a U2 album on an iPhone</li> -->
+              </ul>
+            </div>
+            <div class="grid-item announcements" id="announcements">
+              <div>
+              <h3 class="section-title announcements__title" id="announcements__title">Announcements:</h3>
+              <div class="announcements__content" id="outputDiv">
+                <!-- <p>Davison has entered the room.</p>
+                <p>Davison dropped a Key.</p>
+                <p>You enter the Cell</p>
+                <p>The door slams shut behind you...</p>
+                <p>The door is locked</p>
+                <p>Though you bang against the doors with all your might, they remain unaffected as you slump to the floor exhausted.</p>
+                <p>Without a key, you cannot unlock the door.</p>
+                <p>Davison has entered the room.</p>
+                <p>Davison dropped a Key.</p>
+                <p>You enter the Cell</p>
+                <p>The door slams shut behind you...</p>
+                <p>The door is locked</p>
+                <p>Though you bang against the doors with all your might, they remain unaffected as you slump to the floor exhausted.</p>
+                <p>Without a key, you cannot unlock the door.</p> -->
+              </div>
+            </div>
+              <div class="player-input" id="player-input">
+                <textarea class="player-input-text" name="player-input-text" id="commandText" placeholder="What do you want to do?"></textarea>
+              </div>
+            </div>
+            <div class="grid-item inventory" id="inventory">
+              <h3 class="section-title" id="inventory__title">Player Inventory:</h3>
+              <ul class="inventory__content" id="inventory__content">
+                <li class="ul-item">[Not Yet Implemented]</li>
+                <!-- <li class="ul-item">a paperweight</li>
+                <li class="ul-item">a flashlight</li>
+                <li class="ul-item">a cordless drill</li>
+                <li class="ul-item">a towel</li>
+                <li class="ul-item">a stick of butter</li>
+                <li class="ul-item">a paperweight</li>
+                <li class="ul-item">a flashlight</li>
+                <li class="ul-item">a cordless drill</li>
+                <li class="ul-item">a towel</li>
+                <li class="ul-item">a stick of butter</li> -->
+              </ul>
+            </div>
+            <div class="grid-item actions" id="actions">
+              <h3 class="section-title" id="actions__title">Available Actions:</h3>
+              <ul class="actions__content" id="actions__content">
+                
+                <!-- <li class="ul-item">give up</li>
+                <li class="ul-item">say [message]</li>
+                <li class="ul-item">get [item]</li>
+                <li class="ul-item">drop [item]</li>
+                <li class="ul-item"># - go through door</li>
+                <li class="ul-item">give up</li>
+                <li class="ul-item">say [message]</li>
+                <li class="ul-item">get [item]</li>
+                <li class="ul-item">drop [item]</li>
+                <li class="ul-item"># - go through door</li> -->
+              </ul>
+            </div>
+            <div class="grid-item players" id="players">
+              <h3 class="section-title" id="players__title">Players in Room:</h3>
+              <ul class="players__content" id="players__content">
+                <!-- <li class="ul-item">ColonelMustard</li>
+                <li class="ul-item">ProfessorPlum</li>
+                <li class="ul-item">MrsPeacock</li>
+                <li class="ul-item">MrGreen</li>
+                <li class="ul-item">ColonelMustard</li>
+                <li class="ul-item">ProfessorPlum</li>
+                <li class="ul-item">MrsPeacock</li>
+                <li class="ul-item">MrGreen</li> -->
+              </ul>
+            </div>
+          </div>
+          <div class="server-address">
+            <div class="server-address__content" id="server-address__content">localhost:????</div>
+          </div>
+        </main>
+      </div>
+    </div> <!-- container -->
+
+    <!-- Server Down Screen -->
+    <div id="serverDownDiv">
+          <p id="serverMsg">Oops! The server is closed currently... :(</p>
+          <button id="backHomeBtn">Back To Login</button>
+    </div>
+
+    <!-- <h1>Adventure</h1>
+
+    <p class="alignedP">
+      <label for="playerNameText">Player Name:</label>
+      <textarea id="playerNameText" rows="1" cols="40">Davison</textarea>
+    </p>
+    <div id="gameDiv">
+      <p class="alignedP">
+        <label for="commandText">Command:</label>
+        <textarea id="commandText" rows="1" cols="40"></textarea>
+      </p>
+      <br><br>
+      <div id="containerDiv">
+        <div class="scroll">
+          <div id="roomNameDiv">
+            <blockquote id="roomNameBQ">
+              Room: Lobby
+            </blockquote>
+          </div>
+          <div id="peopleDiv">
+            <blockquote id="emptyRoomText">
+              &lt;Room is empty...&gt;
+            </blockquote>
+          </div>
+        </div>
+        <div id="outputDiv" class="scroll">
+          Welcome to adventure!
+        </div>
+      </div>
+    </div> -->
+    <script type="text/javascript" src="adventure.js"></script>
+  </body>
+</html>

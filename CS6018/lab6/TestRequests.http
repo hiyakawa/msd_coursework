@@ -1,0 +1,29 @@
+POST http://127.0.0.1:8080/books/like
+Content-Type: application/json
+MY_SESSION: ffa21cffa7e4e4bb9a764490d36e40b3
+
+{
+  "title" : "Dune"
+}
+
+###
+
+POST http://127.0.0.1:8080/books/hate
+Content-Type: application/json
+MY_SESSION: 5283fa04e32284ea38ff0c8fefd0305e
+
+{
+"title" : "Java 4 newbs"
+}
+
+####
+
+GET  http://127.0.0.1:8080/books/liked
+MY_SESSION: ffa21cffa7e4e4bb9a764490d36e40b3
+
+
+####
+
+GET http://127.0.0.1:8080/books
+
+

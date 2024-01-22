@@ -1,0 +1,19 @@
+CXX= c++
+CFLAGS= -std=c++11
+HEADER= $(wildcard *.h)
+CCSOURCE= $(wildcard *.cpp)
+prog: Caps.o Clothing.o Pants.o main.o
+	$(CXX) $(CFLAGS) -o prog $^
+printM:
+	echo $(CXX) $(CFLAGS) $(HEADER) $(CCSOURCE)
+Caps.o: Caps.cpp Caps.h
+	c++ -c Caps.cpp
+Clothing.o: Clothing.cpp Clothing.h
+	c++ -c Clothing.cpp
+main.o: main.cpp
+	c++ -c main.cpp
+Pants.o: Pants.cpp Pants.h
+	c++ -c Pants.cpp
+.PHONY: clean
+clean:
+	rm -rf *.o prog

@@ -1,0 +1,75 @@
+Q: Convert the following decimal numbers to binary and hexadecimal
+12
+   binary: 1100
+   hexadecimal: C
+
+63
+   binary: 111111
+   hexadecimal: 3F
+
+100
+   binary: 1100100
+   hexadecimal: 64
+
+127
+   binary: 1111111
+   hexadecimal: 7F
+
+254
+   binary: 11111110
+   hexadecimal: FE
+
+Q: Convert the following binary numbers to decimal and hexadecimal
+100
+   decimal: 4
+   hexadecimal: 4
+
+10001
+   decimal: 17
+   hexadecimal: 11
+
+100010
+   decimal: 34
+   hexadecimal: 22
+
+11000000
+   decimal: 192
+   hexadecimal: C0
+
+11111111
+   decimal: 255
+   hexadecimal: FF
+
+Q: Convert the following hexadecimal numbers to binary and decimal
+A
+  binary: 1010
+  decimal: 10
+
+C0
+   binary: 11000000
+   decimal: 192
+
+FF
+   binary: 11111111
+   decimal: 255
+
+BEEF
+   binary: 1011111011101111
+   decimal: 48879
+
+F00D
+   binary: 1111000000001101
+   decimal: 61453
+
+Q: What's the biggest number you can write using 8 binary digits?
+   What is its value in decimal, and hexadecimal?
+   What's the significance of this number?
+A: 11111111 (binary), which is 255 (decimal) and FF (hexadecimal).
+   255 equals 256 minus 1, and 256 equals 2^8 or 16^2.
+   So 255 in binary is 100,000,000 minus 1, or 100 minus 1 as hexadecimal.
+
+Q: Try counting from 0 to 31 on your fingers using binary.
+   How many fingers do you need?
+A: 31 in decimal is 11111 in binary.
+   Let's say finger down stands for 0, and finger up for 1.
+   Then we will need 5 fingers (from 0 to 11111).
